@@ -87,7 +87,6 @@ class MetodosOrdenamiento{
 				compas++;
 				if(numeros[j] > numeros[j+1]) {
 					intercambios++;
-					//ordenado = false;
 					aux = numeros[j];
 					numeros[j] = numeros[j+1];
 					numeros[j+1] = aux;
@@ -100,12 +99,57 @@ class MetodosOrdenamiento{
 		
 		comparador(init,fin,compas,intercambios,recorrido);
 	}
+ public void ordenamientoPorSeleccion(int[] numeros) {
+		int recorrido=0, intercambios=0, compas=0,aux=0;
+		long init = System.nanoTime();
+		for(int i=0;i<numeros.length;i++) {
+			int minimo=i;
+			for(int j=i+1;j<numeros.length;j++) {
+				if(numeros[j]<numeros[minimo]) {
+					minimo = j;
+					intercambios++;
+				}
+				 aux = numeros[i];
+				numeros[i]= numeros[minimo];
+				numeros[minimo]=aux;
+				compas++;
+			}
+			recorrido++;
+		}
+		long fin = System.nanoTime();
+		
+		comparador(init,fin,compas,intercambios,recorrido);
+	}
+ 
 }
 
 
 public class AlgoritmosOrdenamiento {
 
 	public static void main(String[] args) {
+		
+		MetodosOrdenamiento meh=new MetodosOrdenamiento();
+		
+		int vector[];
+		System.out.println("Ordenamiento Burbuja 1");
+		vector=meh.llenaVector(1000);
+		meh.muestraVector(vector);
+		meh.ordenamientoBurbuja1(vector);
+		meh.muestraVector(vector);
+		System.out.println("Ordenamiento Burbuja 2");
+		vector=meh.llenaVector(1000);
+		meh.muestraVector(vector);
+		meh.ordenamientoBurbuja2(vector);
+		meh.muestraVector(vector);
+		System.out.println("Ordenamiento Burbuja 3");
+		vector=meh.llenaVector(1000);
+		meh.muestraVector(vector);
+		meh.ordenamientoBurbuja3(vector);
+		meh.muestraVector(vector);
+		
+		System.out.println("\nOrdenamiento Seleccion");
+		vector=meh.llenaVector(100);
+		
 		
 		
 
