@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Scanner;
 
 class MetodosOrdenamiento{
 	public void muestraVector(int vector[]) {
@@ -121,36 +122,78 @@ class MetodosOrdenamiento{
 		comparador(init,fin,compas,intercambios,recorrido);
 	}
  
+ public void OrdenamientoInsercion(int array[]) {
+	 int recorrido=0, intercambios=0, compas=0,aux=0,j=0;
+		long init = System.nanoTime();
+		
+		for(int i=1;i<array.length;i++) {
+
+			aux=array[i];
+			j=i-1;
+			
+			while((j>=0)&&(aux<array[j])) {
+				array[j+1]=array[j];
+             compas++;
+				j--;
+			}
+			array[j+1]=aux;
+			intercambios++;
+		}
+		long fin=System.nanoTime();
+		comparador(init,fin,compas,intercambios,recorrido);
+	}
+ 
 }
 
 
 public class AlgoritmosOrdenamiento {
 
 	public static void main(String[] args) {
-		
+		Scanner ent=new Scanner(System.in);
 		MetodosOrdenamiento meh=new MetodosOrdenamiento();
+		int opc=0;int vector[];
+		do {
+			System.out.println("Que metodo desa utilizar"+"\n1)Burbuja"+"\n2)seleccion"+"\n3)Insercion");
+			opc=ent.nextInt();
+		switch(opc) {
+		case 1:
+			System.out.println("Ordenamiento Burbuja 1");
+			vector=meh.llenaVector(1000);
+			meh.muestraVector(vector);
+			meh.ordenamientoBurbuja1(vector);
+			meh.muestraVector(vector);
+			System.out.println("Ordenamiento Burbuja 2");
+			vector=meh.llenaVector(1000);
+			meh.muestraVector(vector);
+			meh.ordenamientoBurbuja2(vector);
+			meh.muestraVector(vector);
+			System.out.println("Ordenamiento Burbuja 3");
+			vector=meh.llenaVector(1000);
+			meh.muestraVector(vector);
+			meh.ordenamientoBurbuja3(vector);
+			meh.muestraVector(vector);
+			break;
+		case 2:
+			System.out.println("\nOrdenamiento Seleccion");
+			vector=meh.llenaVector(100);
+			meh.muestraVector(vector);
+			meh.ordenamientoPorSeleccion(vector);
+			meh.muestraVector(vector);
+			break;
+		case 3:
+			System.out.println("\nOrdenamiento Insercion");
+			vector=meh.llenaVector(100);
+			meh.muestraVector(vector);
+			meh.OrdenamientoInsercion(vector);
+			meh.muestraVector(vector);
+			break;
+		default:
+			System.out.println("Esa no es una opcion");
+			break;
+		}
 		
-		int vector[];
-		System.out.println("Ordenamiento Burbuja 1");
-		vector=meh.llenaVector(1000);
-		meh.muestraVector(vector);
-		meh.ordenamientoBurbuja1(vector);
-		meh.muestraVector(vector);
-		System.out.println("Ordenamiento Burbuja 2");
-		vector=meh.llenaVector(1000);
-		meh.muestraVector(vector);
-		meh.ordenamientoBurbuja2(vector);
-		meh.muestraVector(vector);
-		System.out.println("Ordenamiento Burbuja 3");
-		vector=meh.llenaVector(1000);
-		meh.muestraVector(vector);
-		meh.ordenamientoBurbuja3(vector);
-		meh.muestraVector(vector);
 		
-		System.out.println("\nOrdenamiento Seleccion");
-		vector=meh.llenaVector(100);
-		
-		
+		}while(opc!=3);
 		
 
 	}
