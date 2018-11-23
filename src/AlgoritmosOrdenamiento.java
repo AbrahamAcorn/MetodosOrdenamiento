@@ -168,13 +168,7 @@ class MetodosOrdenamiento{
 	 long fin=System.nanoTime();
 	 comparador(init,fin,compas,intercambios,recorrido);
  }
- public void ordenQuickSort(int array[],int prim,int ult) {
-	 int i,j,pivote,aux;
-	 j=prim;
-	 i=ult;
-	 pivote=array[prim];
- }
- 
+
 }
 
 
