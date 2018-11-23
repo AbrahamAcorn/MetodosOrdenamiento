@@ -122,7 +122,7 @@ class MetodosOrdenamiento{
 		comparador(init,fin,compas,intercambios,recorrido);
 	}
  
- public void OrdenamientoInsercion(int array[]) {
+ public void ordenamientoInsercion(int array[]) {
 	 int recorrido=0, intercambios=0, compas=0,aux=0,j=0;
 		long init = System.nanoTime();
 		
@@ -142,7 +142,7 @@ class MetodosOrdenamiento{
 		long fin=System.nanoTime();
 		comparador(init,fin,compas,intercambios,recorrido);
 	}
- public void ordenShellSort(int array[]) {
+ public void ordenamientoShellSort(int array[]) {
 	 int salto, aux, i;
 	 int recorrido=0, intercambios=0, compas=0;
 	 boolean cambio;
@@ -250,14 +250,14 @@ public class AlgoritmosOrdenamiento {
 			System.out.println("\nOrdenamiento Insercion");
 			vector=meh.llenaVector(100);
 			meh.muestraVector(vector);
-			meh.OrdenamientoInsercion(vector);
+			meh.ordenamientoInsercion(vector);
 			meh.muestraVector(vector);
 			break;
 		case 4:
 			System.out.println("\nOrdenamiento ShellSort");
 			vector=meh.llenaVector(100);
 			meh.muestraVector(vector);
-			meh.ordenShellSort(vector);
+			meh.ordenamientoShellSort(vector);
 			meh.muestraVector(vector);
 			break;
 		case 5:
