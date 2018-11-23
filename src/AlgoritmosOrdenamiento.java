@@ -168,7 +168,50 @@ class MetodosOrdenamiento{
 	 long fin=System.nanoTime();
 	 comparador(init,fin,compas,intercambios,recorrido);
  }
-
+ public void ordenamientoQuickSort(int numeros[],int primero,int ultimo) {
+	 int recorrido = 0,intercambios=0,compas=0;
+		
+     
+     long init =  System.nanoTime();
+		int i,j,pivote,aux;
+		i = primero;
+		j = ultimo;
+		pivote = numeros[primero];
+		while (i < j) {
+         while (numeros[i] <= pivote && i < j) {
+             i++;
+         }
+         while (numeros[j] > pivote) {
+             j--;
+         }
+         if (i < j) {
+         	compas++;
+             aux = numeros[i];
+             numeros[i] = numeros[j];
+             numeros[j] = aux;
+             intercambios++;
+         }
+     }
+		recorrido++;
+		numeros[primero] = numeros[j];
+     numeros[j] = pivote;
+     intercambios++;
+     if (primero < j - 1) {
+         ordenamientoQuickSort(numeros, primero, j - 1);
+     }
+     if (j + 1 < ultimo) {
+         ordenamientoQuickSort(numeros, j + 1, ultimo);
+     }
+     
+     long fin = System.nanoTime();
+     
+     comparador(init,fin,compas,intercambios,recorrido);  
+		
+ }
+ 
+ public void ordenamientoradixSort() {
+	 
+ }
 }
 
 
@@ -256,7 +299,8 @@ public class AlgoritmosOrdenamiento {
 			break;
 		case 5:
 			System.out.println("\nOrdenamiento QuickSort");
-			
+			vector= new int[]{7,8,9,5,3,6,3,3,26,3};
+			meh.ordenamientoQuickSort(vector, 7, 3);
 			break;
 			
 		case 10:System.out.println("------Salido :v----");
