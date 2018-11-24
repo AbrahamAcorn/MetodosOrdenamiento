@@ -3,7 +3,16 @@ import java.util.Scanner;
 
 class MetodosOrdenamiento{
 	public void muestraVector(int vector[]) {
-		System.out.println(Arrays.toString(vector));
+		for(int i=0;i<vector.length;i++) {
+			System.out.print("-["+vector[i]+"]-");
+			if(i%20==0) {
+				System.out.println();
+			}
+		}
+	}
+	public int[] copiaVector(int vector[]) {
+		int[] newVect=vector.clone();
+		return newVect;
 	}
 	public int[] llenaVector(int tam) {
 		int vector[]=new int[tam];
@@ -168,6 +177,7 @@ class MetodosOrdenamiento{
 	 long fin=System.nanoTime();
 	 comparador(init,fin,compas,intercambios,recorrido);
  }
+ //quicksort NO FUNCIONA
  public void ordenamientoQuickSort(int numeros[],int primero,int ultimo) {
 	 int recorrido = 0,intercambios=0,compas=0;
 		
