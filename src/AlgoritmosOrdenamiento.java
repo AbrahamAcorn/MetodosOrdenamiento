@@ -209,8 +209,37 @@ class MetodosOrdenamiento{
 		
  }
  
- public void ordenamientoradixSort() {
-	 
+ public static void radixSort(int[] arr){
+     if(arr.length == 0)
+         return;
+     int[][] np = new int[arr.length][2];
+     int[] q = new int[0x100];
+     int i,j,k,l,f = 0;
+     for(k=0;k<4;k++){
+         for(i=0;i<(np.length-1);i++)
+             np[i][1] = i+1;
+         np[i][1] = -1;
+         for(i=0;i<q.length;i++)
+             q[i] = -1;
+         for(f=i=0;i<arr.length;i++){
+             j = ((0xFF<<(k<<3))&arr[i])>>(k<<3);
+             if(q[j] == -1)
+                 l = q[j] = f;
+             else{
+                 l = q[j];
+                 while(np[l][1] != -1)
+                     l = np[l][1];
+                 np[l][1] = f;
+                 l = np[l][1];
+             }
+             f = np[f][1];
+             np[l][0] = arr[i];
+             np[l][1] = -1;
+         }
+         for(l=q[i=j=0];i<0x100;i++)
+             for(l=q[i];l!=-1;l=np[l][1])
+                     arr[j++] = np[l][0];
+     }
  }
 }
 
@@ -220,7 +249,11 @@ public class AlgoritmosOrdenamiento {
 	public static void main(String[] args) {
 		Scanner ent=new Scanner(System.in);
 		MetodosOrdenamiento meh=new MetodosOrdenamiento();
-		int opc=0;int vector[];
+		int opc=0;int vector[],vectorDiez[],vectorCien[],vectorMillo[];
+		vector=meh.llenaVector(1000);
+		vectorDiez=meh.llenaVector(10000);
+		vectorCien=meh.llenaVector(100000);
+		vectorMillo=meh.llenaVector(1000000);
 		do {
 			System.out.println("Que metodo desa utilizar"+"\n1)Burbuja"+"\n2)seleccion"+"\n3)Insercion"+"\n4)Shellsort"
 		+"\n5)QuickSort");
@@ -229,35 +262,36 @@ public class AlgoritmosOrdenamiento {
 		case 1:
 			System.out.println("Ordenamiento Burbuja 1");
 			System.out.println("-----------------------1,000 datos----------");
-			vector=meh.llenaVector(1000);
 			//meh.muestraVector(vector);
 			meh.ordenamientoBurbuja1(vector);
 			//meh.muestraVector(vector);
 			System.out.println("-----------------------10,000 datos----------");
-			vector=meh.llenaVector(10000);
 			//meh.muestraVector(vector);
-			meh.ordenamientoBurbuja1(vector);
+			meh.ordenamientoBurbuja1(vectorDiez);
 			//meh.muestraVector(vector);
 			System.out.println("-----------------------100,000 datos----------");
-			vector=meh.llenaVector(100000);
 			//meh.muestraVector(vector);
-			meh.ordenamientoBurbuja1(vector);
+			meh.ordenamientoBurbuja1(vectorCien);
+			//meh.muestraVector(vector);
+			System.out.println("-----------------------1,000,000 datos----------");
+			//meh.muestraVector(vector);
+			meh.ordenamientoBurbuja1(vectorMillo);
 			//meh.muestraVector(vector);
 			System.out.println("Ordenamiento Burbuja 2");
-			System.out.println("-----------------------1,000 datos----------");
-			vector=meh.llenaVector(1000);
 			//meh.muestraVector(vector);
 			meh.ordenamientoBurbuja2(vector);
 			//meh.muestraVector(vector);
 			System.out.println("-----------------------10,000 datos----------");
-			vector=meh.llenaVector(10000);
 			//meh.muestraVector(vector);
-			meh.ordenamientoBurbuja2(vector);
+			meh.ordenamientoBurbuja2(vectorDiez);
 			//meh.muestraVector(vector);
 			System.out.println("-----------------------100,000 datos----------");
-			vector=meh.llenaVector(100000);
 			//meh.muestraVector(vector);
-			meh.ordenamientoBurbuja2(vector);
+			meh.ordenamientoBurbuja2(vectorCien);
+			//meh.muestraVector(vector);
+			System.out.println("-----------------------1,000,000 datos----------");
+			//meh.muestraVector(vector);
+			meh.ordenamientoBurbuja2(vectorMillo);
 			//meh.muestraVector(vector);
 			System.out.println("Ordenamiento Burbuja 3");
 			System.out.println("-----------------------1,000 datos----------");
@@ -265,7 +299,8 @@ public class AlgoritmosOrdenamiento {
 			//meh.muestraVector(vector);
 			meh.ordenamientoBurbuja3(vector);
 			//meh.muestraVector(vector);
-			System.out.println("-----------------------10,000 datos----------");
+			System.out.println("----"
+					+ "-------------------10,000 datos----------");
 			vector=meh.llenaVector(10000);
 			//meh.muestraVector(vector);
 			meh.ordenamientoBurbuja3(vector);
