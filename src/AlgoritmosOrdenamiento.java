@@ -1,3 +1,12 @@
+import java.awt.List;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -251,12 +260,145 @@ class MetodosOrdenamiento{
                      arr[j++] = np[l][0];
      }
  }
+ public void Intercalacion(){
+	 File archivo1=new File("./src/Archivo1.txt");//Archivos a leer
+		File archivo2=new File("./src/Archivo2.txt");//Archivos a leer
+				
+		FileReader frA1 = null;
+		BufferedReader brA1;
+		FileReader frA2 = null;
+		BufferedReader brA2;
+		
+		FileWriter archivo3=null;
+		PrintWriter pr=null;
+		
+		try{//Apertura del archivo de salida para escritura
+			archivo3=new FileWriter("./src/ArchivoSalida.txt", false);
+			pr=new PrintWriter(archivo3);
+			
+			try {//Apertura del archivo1 para lectura
+				frA1=new FileReader(archivo1);
+				brA1=new BufferedReader(frA1);
+				String lineaArchivo1;
+				
+				try {//Apertura del archivo2 para lectura
+					frA2=new FileReader(archivo2);
+					brA2=new BufferedReader(frA2);
+					String lineaArchivo2;
+					boolean repetir=true;
+					
+					lineaArchivo1=brA1.readLine();
+					lineaArchivo2=brA2.readLine();
+										
+					do{//Se realizan comparaciones mientras la bandera no cambie
+						if(Integer.parseInt(lineaArchivo1)<Integer.parseInt(lineaArchivo2)){
+							pr.println(lineaArchivo1);
+							if((lineaArchivo1=brA1.readLine())==null){
+								pr.println(lineaArchivo2);
+								while((lineaArchivo2=brA2.readLine())!=null){
+									pr.println(lineaArchivo2);
+								}
+								repetir=false;
+							}
+						}
+						else if(Integer.parseInt(lineaArchivo1)>Integer.parseInt(lineaArchivo2)){
+							pr.println(lineaArchivo2);
+							if((lineaArchivo2=brA2.readLine())==null){
+								pr.println(lineaArchivo1);
+								while((lineaArchivo1=brA1.readLine())!=null){
+									pr.println(lineaArchivo1);
+								}
+								repetir=false;
+							}
+						}
+						else{
+							pr.println(lineaArchivo1);
+							pr.println(lineaArchivo2);
+							if((lineaArchivo1=brA1.readLine())==null){
+								pr.println(lineaArchivo2);
+								while((lineaArchivo2=brA2.readLine())!=null){
+									pr.println(lineaArchivo2);
+								}
+								repetir=false;
+							}
+							if((lineaArchivo2=brA2.readLine())==null){
+								pr.println(lineaArchivo1);
+								while((lineaArchivo1=brA1.readLine())!=null){
+									pr.println(lineaArchivo1);
+								}
+								repetir=false;
+							}
+						}
+					}while(repetir);
+				} catch (FileNotFoundException e) {
+					System.out.println("Error al abrir el archivo");
+					//e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}finally{
+					try {
+						frA2.close();
+					} catch (IOException e) {
+						System.out.println("Error al cerrar el archivo");
+					}	
+				}//Final del archivo2
+			} catch (FileNotFoundException e) {
+				System.out.println("Error al abrir el archivo");
+				//e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}finally{
+				try {
+					frA1.close();
+				} catch (IOException e) {
+					System.out.println("Error al cerrar el archivo");
+				}
+			}//Final del archivo1
+			System.out.println("Archivos combinados y ordenados correctamente");
+		}catch (IOException e){
+			System.out.println("Error al abrir o crear el archivo");
+		}finally{
+			try{
+				archivo3.close();
+			}catch(IOException e){
+				System.out.println("Error al cerrar el archivo");
+			}
+		}//Final del archivo3	
+ }
+ 
+ public void mergeSort(Integer[] array,int lo,int n) {
+	 int low=lo;
+	 int high=n;
+	 if(low>=high) {
+		 return;
+	 }
+	 int middle=(low+high)/2;
+	 
+	 mergeSort(array,low,middle);
+	 mergeSort(array,middle+1,high);
+	 int endlow=middle;
+	 int starthigh=middle+1;
+	 while((lo<=endlow)&&(starthigh<=high)) {
+		 if (array[low]<array[starthigh]) {
+			 low++;
+		 }else {
+			 int temp=array[starthigh];
+			 for(int k=starthigh-1;k>=low;k--) {
+				array[k+1]=array[k]; 
+			 }
+			 array[low]=temp;
+			 low++;
+			 starthigh++;
+			 }
+	 }
+ }
+ 
 }
 
 
 public class AlgoritmosOrdenamiento {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws NumberFormatException,IOException{
 		Scanner ent=new Scanner(System.in);
 		MetodosOrdenamiento meh=new MetodosOrdenamiento();
 		int opc=0;int vector[],vectorUno[],vectorDiez[],vectorCien[],vectorMillo[];
@@ -266,7 +408,7 @@ public class AlgoritmosOrdenamiento {
 		vectorMillo=meh.llenaVector(1000000);
 		do {
 			System.out.println("Que metodo desa utilizar"+"\n1)Burbuja"+"\n2)seleccion"+"\n3)Insercion"+"\n4)Shellsort"
-		+"\n5)QuickSort");
+		+"\n5)QuickSort"+"\nOrdenamiento En archivos"+"\n6)Intercalacion"+"\n7)Mezcla Directa");
 			opc=ent.nextInt();
 		switch(opc) {
 		case 1:
@@ -408,7 +550,28 @@ public class AlgoritmosOrdenamiento {
 			vector= new int[]{7,8,9,5,3,6,3,3,26,3};
 			meh.ordenamientoQuickSort(vector, 7, 3);
 			break;
-			
+		case 6:
+			meh.Intercalacion();
+			break;
+		case 7:
+			System.out.println("Ordenamiento MergeSort");
+			try {
+				BufferedReader br=new BufferedReader(new FileReader("./src/Archivo1.txt"));
+				ArrayList<Integer> lines=new ArrayList<Integer>();
+				String line;
+				while((line=br.readLine())!=null) {
+					lines.add(Integer.parseInt(line));
+				}
+				br.close();
+				Integer[] inputArray=lines.toArray(new Integer[lines.size()]);
+				meh.mergeSort(inputArray, 0, inputArray.length-1);
+				for(Integer i:inputArray) {
+					System.out.println(i);
+				}
+			}catch(IOException ie) {
+				System.out.println(ie.getMessage());
+			}
+		break;	
 		case 10:System.out.println("------Salido :v----");
 		break;
 		default:
