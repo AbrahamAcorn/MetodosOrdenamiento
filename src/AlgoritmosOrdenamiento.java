@@ -547,7 +547,7 @@ public class AlgoritmosOrdenamiento {
 			break;
 		case 5:
 			System.out.println("\nOrdenamiento QuickSort");
-			vector= new int[]{7,8,9,5,3,6,3,3,26,3};
+			vector= new int[]{7,8,9,3,6,3,3,26,3};
 			meh.ordenamientoQuickSort(vector, 7, 3);
 			break;
 		case 6:
