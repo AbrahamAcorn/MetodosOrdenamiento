@@ -393,6 +393,12 @@ class MetodosOrdenamiento{
 	 }
  }
  
+ public void naturalMerge() {
+	 File archiv1=new File("./src/Archivo1.txt");
+	 FileReader fra1=null;
+	 
+	 
+ }
 }
 
 
