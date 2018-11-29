@@ -286,7 +286,6 @@ class MetodosOrdenamiento{
 					brA2=new BufferedReader(frA2);
 					String lineaArchivo2;
 					boolean repetir=true;
-					
 					lineaArchivo1=brA1.readLine();
 					lineaArchivo2=brA2.readLine();
 										
@@ -393,14 +392,22 @@ class MetodosOrdenamiento{
 	 }
  }
  
- public void naturalMerge() {
+ 
+ public void naturalMergeSort() {
 	 File archiv1=new File("./src/Archivo1.txt");
 	 FileReader fra1=null;
-	 
+	 /*
+	  * int j=0;
+	  * nint i=primero;
+	  * int medio =0;
+	  * 
+	  * int az=0;
+	  * while(true){
+	  * 
+	  */
 	 
  }
 }
-
 
 public class AlgoritmosOrdenamiento {
 
@@ -560,7 +567,7 @@ public class AlgoritmosOrdenamiento {
 			meh.Intercalacion();
 			break;
 		case 7:
-			System.out.println("Ordenamiento MergeSort");
+			System.out.println("Ordenamiento MergeSort (Mezcla directata)");
 			try {
 				BufferedReader br=new BufferedReader(new FileReader("./src/Archivo1.txt"));
 				ArrayList<Integer> lines=new ArrayList<Integer>();
@@ -577,7 +584,9 @@ public class AlgoritmosOrdenamiento {
 			}catch(IOException ie) {
 				System.out.println(ie.getMessage());
 			}
-		break;	
+		break;
+		case 8:
+			System.out.println("Ordenamiento NaturalMergeSort (Mezcla Narural)");
 		case 10:System.out.println("------Salido :v----");
 		break;
 		default:
