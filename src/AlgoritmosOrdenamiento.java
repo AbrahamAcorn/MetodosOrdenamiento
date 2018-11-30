@@ -394,17 +394,6 @@ class MetodosOrdenamiento{
  
  
  public void naturalMergeSort() {
-	 File archiv1=new File("./src/Archivo1.txt");
-	 FileReader fra1=null;
-	 /*
-	  * int j=0;
-	  * nint i=primero;
-	  * int medio =0;
-	  * 
-	  * int az=0;
-	  * while(true){
-	  * 
-	  */
 	 
  }
 }
@@ -421,7 +410,7 @@ public class AlgoritmosOrdenamiento {
 		vectorMillo=meh.llenaVector(1000000);
 		do {
 			System.out.println("Que metodo desa utilizar"+"\n1)Burbuja"+"\n2)seleccion"+"\n3)Insercion"+"\n4)Shellsort"
-		+"\n5)QuickSort"+"\nOrdenamiento En archivos"+"\n6)Intercalacion"+"\n7)Mezcla Directa");
+		+"\n5)QuickSort"+"\nOrdenamiento En archivos"+"\n6)Intercalacion"+"\n7)Mezcla Directa"+"\nMezcla Natural");
 			opc=ent.nextInt();
 		switch(opc) {
 		case 1:
